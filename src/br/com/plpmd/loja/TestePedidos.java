@@ -1,9 +1,12 @@
-package br.com.plpmd.loja.pedido;
+package br.com.plpmd.loja;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+import br.com.plpmd.loja.pedido.GeraPedido;
+import br.com.plpmd.loja.pedido.GeraPedidoHandler;
 import br.com.plpmd.loja.pedido.acao.EnviarEmailPedido;
+import br.com.plpmd.loja.pedido.acao.LogDePedido;
 import br.com.plpmd.loja.pedido.acao.SalvarPedidoNoBancoDeDados;
 
 public class TestePedidos {
@@ -18,8 +21,8 @@ public class TestePedidos {
 		GeraPedido gerador = new GeraPedido(cliente, valorOrcamento, quantidadeItens);
 		GeraPedidoHandler handler = new GeraPedidoHandler(
 				Arrays.asList(new SalvarPedidoNoBancoDeDados(),
-				new EnviarEmailPedido()
-				));
+				new EnviarEmailPedido(),
+				new LogDePedido()));
 		handler.executa(gerador);
 
 	}
